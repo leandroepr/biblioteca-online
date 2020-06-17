@@ -6,6 +6,8 @@ package br.edu.faec.bibliotecaonline.dominio.contratos;
  * @param <T>
  * @date 16/06/2020
  */
-public interface InputPort<T>{
-    void executar(T requestModel);
+public interface Resposta<T> {
+    void onNext(T resposta);
+    void onError(Exception ex);
+    void onComplete();
 }

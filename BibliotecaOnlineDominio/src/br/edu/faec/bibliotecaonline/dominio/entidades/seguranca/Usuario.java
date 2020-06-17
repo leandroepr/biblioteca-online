@@ -1,41 +1,24 @@
 package br.edu.faec.bibliotecaonline.dominio.entidades.seguranca;
 
 /**
- *
+ * 
  * @author Leandro Reis <leandro.e.reis@gmail.com>
- * @date 03/06/2020
+ * @date 16/06/2020
  */
 public class Usuario {
+    private final String nome;
+    private final String login;
+    private final String senha;
+    private final String perfil;
 
-    private String nome;
-    private String login;
-    private String senha;
-
-    public void setNome(String nome) {
+    public Usuario(String nome, String login, String senha, String perfil) {
         this.nome = nome;
-    }
-
-    public void setLogin(String login) {
-        this.login = login.toLowerCase();
-    }
-
-    public void setSenha(String senha) {
+        this.login = login;
         this.senha = senha;
+        this.perfil = perfil;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public boolean validarSenha(String senha) {
-        return this.senha.equals(senha);
+    
+    public boolean autenticar(String login, String senha){
+        return this.login.equalsIgnoreCase(login) && this.senha.equals(senha);
     }
 }
