@@ -15,17 +15,37 @@ public class UsuarioTest {
     
     @Before
     public void setUp() {
-        usuario = new Usuario("Leandro Reis", "lreis", "senha", "Administrador");
+        usuario = new Usuario.Builder()
+                .nome("Leandro Reis")
+                .login("lreis")
+                .senha("senha")
+                .perfil("Administrador")
+                .build();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
     @Test
     public void aoAuteticarUsuarioESenha_comUsuarioESenhaValidos_RetornaTrue() {
         assertTrue(usuario.autenticar("lreis", "senha"));
+    }
+    
+    @Test
+    public void aoAuteticarUsuarioESenha_comUsuarioNulo_RetornaFalso() {
+        assertFalse(usuario.autenticar(null, "senha"));
+    }
+    
+    @Test
+    public void aoAuteticarUsuarioESenha_comSenhaNula_RetornaFalso() {
+        assertFalse(usuario.autenticar("", null));
+    }
+    
+    @Test
+    public void aoAuteticarUsuarioESenha_comUsuarioInvalido_RetornaFalso() {
+        assertFalse(usuario.autenticar("invalido", "senha"));
+    }    
+    
+    @Test
+    public void aoAuteticarUsuarioESenha_comSenhaInvalida_RetornaFalso() {
+        assertFalse(usuario.autenticar("invalido", "senha"));
     }
 }
